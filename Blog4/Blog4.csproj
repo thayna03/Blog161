@@ -7,6 +7,9 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\download %281%29.jfif" />
+    <Content Remove="wwwroot\download %282%29.jfif" />
+    <Content Remove="wwwroot\download1.jfif" />
+    <Content Remove="wwwroot\images1.jfif" />
   </ItemGroup>
 
 
@@ -14,11 +17,6 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\Imagens\" />
   </ItemGroup>
 
 </Project>

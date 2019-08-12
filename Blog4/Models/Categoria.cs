@@ -9,5 +9,6 @@ namespace Blog4.Models
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
+        public List <Mensagem>Mensagems { get; set; }
     }
 }

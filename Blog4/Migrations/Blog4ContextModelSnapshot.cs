@@ -44,13 +44,11 @@ namespace Blog4.Migrations
 
                     b.Property<string>("Descricao");
 
-                    b.Property<int?>("MensagemId");
+                    b.Property<string>("Nome");
 
                     b.Property<string>("Titulo");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MensagemId");
 
                     b.ToTable("Comentario");
                 });
@@ -61,7 +59,9 @@ namespace Blog4.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Categoria");
+                    b.Property<int>("CategoriaId");
+
+                    b.Property<int>("ComentarioId");
 
                     b.Property<DateTime>("DataDeCriacao");
 
@@ -71,14 +71,24 @@ namespace Blog4.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
+                    b.HasIndex("ComentarioId");
+
                     b.ToTable("Mensagem");
                 });
 
-            modelBuilder.Entity("Blog4.Models.Comentario", b =>
+            modelBuilder.Entity("Blog4.Models.Mensagem", b =>
                 {
-                    b.HasOne("Blog4.Models.Mensagem", "mensagem")
-                        .WithMany()
-                        .HasForeignKey("MensagemId");
+                    b.HasOne("Blog4.Models.Categoria", "Categorias")
+                        .WithMany("Mensagems")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Blog4.Models.Comentario", "Comentarios")
+                        .WithMany("mensagems")
+                        .HasForeignKey("ComentarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
