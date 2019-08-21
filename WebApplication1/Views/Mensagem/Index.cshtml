@@ -4,6 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
+<a asp-controller="Mensagem" asp-action="Create" class="btn btn-primary"> Escrever Mensagem</a>
+
 @foreach (var mensagem in Model.Mensagens)
 {
     <div class="card form-group">
@@ -17,18 +19,23 @@
             <p class="card-text">
                 @mensagem.Descricao
             </p>
-            <a class="btn btn-dark" asp-route-id="@mensagem.MensagemId" asp-controller="Comentario" asp-action="Create">Comentar</a>
-            <p><h5>Comentarios</h5></p>
+            <a class="btn btn-danger" asp-route-id="@mensagem.MensagemId" asp-controller="Comentario" asp-action="Create">Comentar</a>
+            
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="@mensagem.MensagemId" />
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                </form>
+                <p><h5>Comentarios</h5></p>
 
-            @foreach (var comentario in Model.Comentarios)
-            {
-                <p>
-                    @if (mensagem.MensagemId == comentario.MensagemId)
-                    {
-                        @comentario.Titulo
-                    }
-                </p>
-            }
+                @foreach (var comentario in Model.Comentarios)
+                {
+                    <p>
+                        @if (mensagem.MensagemId == comentario.MensagemId)
+                        {
+                            @comentario.Titulo
+                        }
+                    </p>
+                }
         </div>
     </div>
 }

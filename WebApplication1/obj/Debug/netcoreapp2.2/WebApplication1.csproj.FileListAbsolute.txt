@@ -43,3 +43,6 @@ C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcorea
 C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Mensagem\Details.g.cshtml.cs
 C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Mensagem\Edit.g.cshtml.cs
 C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Mensagem\Index.g.cshtml.cs
+C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Account\AccessDenied.g.cshtml.cs
+C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\Fabrica\source\repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.2\Razor\Views\Account\Register.g.cshtml.cs

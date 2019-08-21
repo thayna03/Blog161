@@ -22,6 +22,8 @@ namespace WebApplication1.Controllers
         // GET: Mensagem
         public async Task<IActionResult> Index()
         {
+            ViewData["CategoriaId"] = new SelectList(_context.Categoria, "CategoriaId", "Descricao");
+            ViewData["MensagemId"] = new SelectList(_context.Mensagem, "MensagemId", "MensagemId");
             var blogContext = _context.Mensagem.Include(m => m.Comentarios);
             var blogContext1 = _context.Comentario.Include(c => c.Mensagem);
 

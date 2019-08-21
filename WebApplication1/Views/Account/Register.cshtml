@@ -1,0 +1,109 @@
+﻿@model WebApplication1.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+@*<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">Sign In</h5>
+                <form class="form-signin">
+                    <div class="form-label-group">
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputEmail">Email address</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <label for="inputPassword">Password</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Remember password</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    <hr class="my-4">
+                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="row justify-content-center">
+    <div class="col-5">
+        <form class="submit-form" method="post" enctype="multipart/form-data" asp-action="Register">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group row">
+                <label asp-for="FirstName" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" required>
+                    <span asp-validation-for="FirstName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="LastName" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name" required>
+                    <span asp-validation-for="LastName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="PhoneNumber" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Phone Number" required>
+                    <span asp-validation-for="PhoneNumber"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Email" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="Email" type="email" class="form-control" placeholder="Email" required>
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="UserName" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="UserName" type="tel" class="form-control" placeholder="User Name" required>
+                    <span asp-validation-for="UserName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Password" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                    <span asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="RoleName" class="col-sm-4 col-form-label"></label>
+                <div class="col-sm-6">
+                    <select asp-for="RoleName" class="form-control">
+                        <option selected>Member</option>
+                        <option>Administrator</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-success">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+

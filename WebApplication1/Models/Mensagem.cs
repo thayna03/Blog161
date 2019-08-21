@@ -8,6 +8,11 @@ namespace WebApplication1.Models
 {
     public class Mensagem
     {
+        public Mensagem()
+        {
+            DataDeCriacao = DateTime.Now;
+        }
+
         public int MensagemId { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }

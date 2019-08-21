@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace WebApplication1
 {
@@ -26,22 +28,33 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 7;
+                options.Password.RequireUppercase = true;
+
+                options.User.RequireUniqueEmail = false;
+            })
+
+            .AddEntityFrameworkStores<WebApplication1Context>()
+            .AddDefaultTokenProviders();
+
             services.AddDbContext<WebApplication1Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebApplication1Context")));
+            options.UseSqlServer(Configuration.GetConnectionString("WebApplication1Context")));
+
+            services.AddMvc();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireEmail", policy => policy.RequireClaim(ClaimTypes.Email));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WebApplication1Context BlogContext)
         {
             if (env.IsDevelopment())
             {
@@ -54,6 +67,14 @@ namespace WebApplication1
                 app.UseHsts();
             }
 
+            BlogContext.Database.EnsureDeleted();
+            BlogContext.Database.EnsureCreated();
+
+            app.UseStaticFiles();
+            app.UseAuthentication();
+
+            //app.UseNodeModules(env.ContentRootPath);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -62,7 +83,8 @@ namespace WebApplication1
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Mensagem", action = "Index" });
             });
         }
     }

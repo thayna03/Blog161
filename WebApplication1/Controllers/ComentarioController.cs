@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["MensagemId"] = new SelectList(_context.Set<Mensagem>(), "MensagemId", "MensagemId", comentario.MensagemId);
-            return View(comentario);
+            return View("Index","Mensagem");
         }
 
         // GET: Comentario/Edit/5
